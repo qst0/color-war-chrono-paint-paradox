@@ -247,6 +247,14 @@
             }
         },
         {
+            "Key": "b8a4d234-1ac8-4c4c-9a0d-363f08e6a443",
+            "Value": {
+                "id": "ca37dacf-0df3-478b-b97e-bdbc77c51e84",
+                "resourcePath": "objects\\oPaintable\\oPaintable.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "bb84dba3-d029-4c15-8916-1e9a6877aa18",
             "Value": {
                 "id": "b53bdb25-feee-488c-89d0-06d9251b6445",

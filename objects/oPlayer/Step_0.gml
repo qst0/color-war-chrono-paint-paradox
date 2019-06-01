@@ -176,6 +176,7 @@ if dying {
 
 
 // Animations
+image_blend = color;
 
 if hsp > 0 { // Moving Right.
 	image_xscale = 1;

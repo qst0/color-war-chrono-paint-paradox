@@ -4,7 +4,16 @@
     "mvc": "1.0",
     "name": "oBGWall",
     "eventList": [
-        
+        {
+            "id": "0d9910a9-5cdc-4d34-989c-851fe024a82d",
+            "modelName": "GMEvent",
+            "mvc": "1.0",
+            "IsDnD": false,
+            "collisionObjectId": "00000000-0000-0000-0000-000000000000",
+            "enumb": 0,
+            "eventtype": 3,
+            "m_owner": "541df741-326e-4eea-83a4-4c98dcd15bfa"
+        }
     ],
     "maskSpriteId": "00000000-0000-0000-0000-000000000000",
     "overriddenProperties": null,

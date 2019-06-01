@@ -1,23 +1,23 @@
 {
-    "id": "bb84dba3-d029-4c15-8916-1e9a6877aa18",
+    "id": "b8a4d234-1ac8-4c4c-9a0d-363f08e6a443",
     "modelName": "GMObject",
     "mvc": "1.0",
-    "name": "oPlatform",
+    "name": "oPaintable",
     "eventList": [
         {
-            "id": "7c877381-c711-47a9-98ad-649985a5649a",
+            "id": "42069f4c-a1c0-42e6-8453-55e637efeef1",
             "modelName": "GMEvent",
             "mvc": "1.0",
             "IsDnD": false,
             "collisionObjectId": "00000000-0000-0000-0000-000000000000",
             "enumb": 0,
             "eventtype": 3,
-            "m_owner": "bb84dba3-d029-4c15-8916-1e9a6877aa18"
+            "m_owner": "b8a4d234-1ac8-4c4c-9a0d-363f08e6a443"
         }
     ],
     "maskSpriteId": "00000000-0000-0000-0000-000000000000",
     "overriddenProperties": null,
-    "parentObjectId": "5e49c548-beda-478a-b004-e8c6708fe319",
+    "parentObjectId": "00000000-0000-0000-0000-000000000000",
     "persistent": false,
     "physicsAngularDamping": 0.1,
     "physicsDensity": 0.5,
@@ -33,6 +33,6 @@
     "physicsStartAwake": true,
     "properties": null,
     "solid": false,
-    "spriteId": "18cc2bd0-fec4-416e-b7b5-bdb1c3f5e452",
+    "spriteId": "00000000-0000-0000-0000-000000000000",
     "visible": true
 }

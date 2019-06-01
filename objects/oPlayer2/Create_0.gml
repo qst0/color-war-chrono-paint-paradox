@@ -14,14 +14,14 @@ walksp = 0.3;
 frictionRate = 1;
 frictionFactor = 0.1;
 
-maxwalksp = 4;
+maxwalksp = 2;
 
 jumppow = 4;
 maxJumpCharges = 2;
 jumpCharges = 0;
 
 vsp = 0;
-maxvsp = 1;
+maxvsp = 3;
 //oQstPixel.gameMaxVertSpeed;
 grv = 0.3;
 

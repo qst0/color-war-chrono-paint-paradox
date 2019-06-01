@@ -168,6 +168,7 @@ if dying {
 
 
 // Animations
+image_blend = color;
 
 if hsp > 0 { // Moving Right.
 	image_xscale = 1;
@@ -177,7 +178,6 @@ if hsp < 0 { // Moving left.
 }
 
 // Jumping
-image_blend = color;
 if !place_meeting(x, y + 0.1, oSolid) {
 	sprite_index = sprPlayerJump;
 	image_speed = 0;
