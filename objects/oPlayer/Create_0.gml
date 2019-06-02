@@ -1,6 +1,10 @@
-color = c_blue;
+
 /// @desc ?
 /// @desc ?
+
+playerNum = 0;
+color = c_white;
+
 playerHealth = 100000;
 playerMaxHealth = 100000;
 recoveryRate = 2;

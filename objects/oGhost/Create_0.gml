@@ -1,4 +1,7 @@
-color = c_red;
+playbackStep = 0;
+finalStep = -1; //Set on creation
+recording = [] //Set on creation
+color = c_green;
 /// @desc ?
 /// @desc ?
 playerHealth = 100000;

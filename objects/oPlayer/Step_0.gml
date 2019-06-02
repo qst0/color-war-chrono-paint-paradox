@@ -9,18 +9,36 @@
 	keyJump = keyboard_check_pressed(vk_space);
 */
 
-if !dying {
-	keyLeft = keyboard_check(ord("A"));
-	keyRight = keyboard_check(ord("D"));
-	keyUp = keyboard_check(ord("W"));
-	keyDown = keyboard_check(ord("S"));
-	keyJump = keyboard_check_pressed(vk_space);
-} else {
-	keyLeft = false;
-	keyRight = false;
-	keyUp = false;
-	keyDown = false;
-	keyJump = false;
+if playerNum == 2 {
+	color = c_red;
+	if !dying {
+		keyLeft = keyboard_check(vk_left) || gamepad_axis_value(1,0) < -.5//or keyboard_check(ord("A"));
+		keyRight = keyboard_check(vk_right) || gamepad_axis_value(1,0) > .5//or keyboard_check(ord("D"));
+		keyUp = keyboard_check(vk_up) || gamepad_axis_value(1,1) > .5//or keyboard_check(ord("W"));;
+		keyDown = keyboard_check(vk_down) || gamepad_axis_value(1,1) < -.5//or keyboard_check(ord("S"));
+		keyJump = keyboard_check_pressed(vk_rcontrol) || gamepad_button_check_pressed(1,gp_face1)
+	} else {
+		keyLeft = false;
+		keyRight = false;
+		keyUp = false;
+		keyDown = false;
+		keyJump = false;
+	}
+} else if playerNum == 1 {
+	color = c_blue;
+	if !dying {
+		keyLeft = keyboard_check(ord("A")) || gamepad_axis_value(0,0) < -.5
+		keyRight = keyboard_check(ord("D")) || gamepad_axis_value(0,0) > .5
+		keyUp = keyboard_check(ord("W")) || gamepad_axis_value(0,1) > .5
+		keyDown = keyboard_check(ord("S")) || gamepad_axis_value(0,1) < -.5
+		keyJump = keyboard_check_pressed(vk_space) || gamepad_button_check_pressed(0,gp_face1);
+	} else {
+		keyLeft = false;
+		keyRight = false;
+		keyUp = false;
+		keyDown = false;
+		keyJump = false;
+	}
 }
 
 /*
@@ -33,6 +51,8 @@ if keyDown {
 	oCamera.yOffset = 0;
 }
 */
+
+// SIDE TO SIDE MOVEMENT
 
 if oGame.step % frictionRate == 0 {
 	if hsp != 0 {
@@ -49,34 +69,6 @@ var move = keyRight - keyLeft;
 if (hsp + move * walksp) < maxwalksp
 	and (hsp + move * walksp) > -maxwalksp
 hsp += move * walksp;
-}
-
-if oGame.step % frictionRate == 0 {
-	if vsp != 0 {
-		if vsp > 0{
-			vsp -= frictionFactor;
-		} else if hsp < 0 {
-			vsp += frictionFactor;
-		}
-	}
-}
-
-if vsp < maxvsp {
-	vsp += grv;
-}
-
-// jumping on the floor
-if place_meeting(x, y + 0.1, oSolid){
-	jumpCharges = maxJumpCharges;
-	if keyJump {
-		vsp = - jumppow;
-	}
-}
-
-// Jumpming in the air
-if keyJump and jumpCharges {
-	vsp = - jumppow;
-	jumpCharges--;
 }
 
 /*
@@ -109,6 +101,24 @@ if place_meeting(x + hsp, y, oSolid) // we'll hit a solid going left or right
 
 x += hsp;
 
+// RISING AND FALLING MOVEMENT
+
+
+// Gravity and Friction happen first
+if oGame.step % frictionRate == 0 {
+	if vsp != 0 {
+		if vsp > 0{
+			vsp -= frictionFactor;
+		} else if hsp < 0 {
+			vsp += frictionFactor;
+		}
+	}
+}
+
+if vsp < maxvsp {
+	vsp += grv;
+}
+
 // do floor detections. aka falling and rising
 
 /*
@@ -127,16 +137,32 @@ if place_meeting(x, y + vsp, oSolid) // We'll hit a solid
 }
 */
 
-if place_meeting(x, y + vsp, oSolid) // We'll hit a solid
-	//&& place_meeting(x, y + vsp, oWall) // it will be a Wall.
-	{
-	// So go toward it till we do hit it.
-	while !place_meeting(x, y + sign(vsp)/10, oSolid) {
-		y += sign(vsp)/10;
+if place_meeting(x, y + vsp, oSolid) { // We'll hit a solid
+	if place_meeting(x, y + vsp, oBounce) { // it is bouncy
+		keyJump = true;
+	} else { // Regular Solid
+		// So go toward it till we do hit it.
+		while !place_meeting(x, y + sign(vsp)/10, oSolid) {
+			y += sign(vsp)/10;
+		}
+		//Then stop.
+		//effect_create_below(ef_rain, x, y, vsp*10, c_red);
+		vsp = 0;
 	}
-	//Then stop.
-	//effect_create_below(ef_rain, x, y, vsp*10, c_red);
-	vsp = 0;
+}
+
+// jumping on the floor
+if place_meeting(x, y + 0.1, oSolid){
+	jumpCharges = maxJumpCharges;
+	if keyJump {
+		vsp = - jumppow;
+	}
+}
+
+// Jumpming in the air
+if keyJump and jumpCharges {
+	vsp = - jumppow;
+	jumpCharges--;
 }
 
 y += vsp;
