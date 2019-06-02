@@ -1,18 +1,18 @@
 {
-    "id": "46de1f8e-93e6-4555-bc73-ecf6d4ace22e",
+    "id": "7c707d10-bd25-4c79-a7b3-b958787cdfcd",
     "modelName": "GMObject",
     "mvc": "1.0",
     "name": "oBGWallDark",
     "eventList": [
         {
-            "id": "b2cebdfd-25f7-4203-8856-536d10c08eb4",
+            "id": "c1d74fa9-965f-4602-bffd-7e797a511586",
             "modelName": "GMEvent",
             "mvc": "1.0",
             "IsDnD": false,
             "collisionObjectId": "00000000-0000-0000-0000-000000000000",
             "enumb": 0,
             "eventtype": 3,
-            "m_owner": "46de1f8e-93e6-4555-bc73-ecf6d4ace22e"
+            "m_owner": "7c707d10-bd25-4c79-a7b3-b958787cdfcd"
         }
     ],
     "maskSpriteId": "00000000-0000-0000-0000-000000000000",

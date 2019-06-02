@@ -87,6 +87,20 @@ x += hsp;
 
 // RISING AND FALLING MOVEMENT
 
+// jumping on the floor
+if place_meeting(x, y + 0.1, oSolid){
+	jumpCharges = maxJumpCharges;
+	if keyJump {
+		vsp = - jumppow;
+	}
+}
+
+// Jumpming in the air
+if keyJump and jumpCharges {
+	vsp = - jumppow;
+	jumpCharges--;
+}
+
 
 // Gravity and Friction happen first
 if oGame.step % frictionRate == 0 {
@@ -135,19 +149,6 @@ if place_meeting(x, y + vsp, oSolid) { // We'll hit a solid
 	}
 }
 
-// jumping on the floor
-if place_meeting(x, y + 0.1, oSolid){
-	jumpCharges = maxJumpCharges;
-	if keyJump {
-		vsp = - jumppow;
-	}
-}
-
-// Jumpming in the air
-if keyJump and jumpCharges {
-	vsp = - jumppow;
-	jumpCharges--;
-}
 
 y += vsp;
 

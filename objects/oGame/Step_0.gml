@@ -8,16 +8,8 @@ if step == 0 {
 	p2Rec_ystart = p2.ystart;
 }
 
-if keyboard_check_pressed(vk_f1) {
+if keyboard_check_pressed(vk_f12) {
 	debug = !debug;
-}
-
-if keyboard_check_pressed(vk_f5) {
-	game_restart();
-}
-
-if keyboard_check_pressed(vk_escape) {
-	game_end();
 }
 
 if step % 4 == 0 {
@@ -38,16 +30,19 @@ scoreToWin = 180
 scoreForAdv = totalPaintable / 2;
 
 if BlueToWin == scoreToWin {
-	game_restart()
+	room_goto(rmBlue)
 }
 
 if RedToWin == scoreToWin {
-	game_restart()
+	room_goto(rmRed)
 }
 
 if scoreRed >= scoreForAdv && scoreBlue < scoreForAdv {
 	if RedToWin < scoreToWin { 
 		RedToWin++;
+		if step % 18 == 0 {
+			effect_create_below(ef_rain, p2.x, p2.y, 1, c_red);
+		}
 	}
 	if BlueToWin > 0 {
 		BlueToWin--;
@@ -58,6 +53,9 @@ if scoreRed >= scoreForAdv && scoreBlue < scoreForAdv {
 if scoreBlue >= scoreForAdv && scoreRed < scoreForAdv {
 	if BlueToWin < scoreToWin { 
 		BlueToWin++;
+		if step % 18 == 0 {
+			effect_create_below(ef_rain, p1.x, p1.y, 1, c_blue);
+		}
 	}
 	if RedToWin > 0 {
 		RedToWin--;
@@ -99,7 +97,11 @@ if stepsTillY2K != 0 {
 	&& p1PaintPercent > 0 {
 		p1PaintPercent -= 10
 		if recording == true {
-			recording = false
+			if oSoul.playAudio {
+				audio_sound_pitch(sfxTimeSummon, random_range(0.8,1.2))
+				audio_play_sound(sfxTimeSummon, 1, false);
+			}
+			//recording = false
 			recordingStopStep = step;
 		}
 		ghost = instance_create_layer(p1Rec_xstart, p1Rec_ystart, "players", oGhost);
@@ -115,7 +117,11 @@ if stepsTillY2K != 0 {
 	&& p2PaintPercent > 0 {
 		p2PaintPercent -= 10
 		if recording2 == true {
-			recording2 = false
+			if oSoul.playAudio {
+				audio_sound_pitch(sfxTimeSummon, random_range(0.8,1.2))
+				audio_play_sound(sfxTimeSummon, 1, false);
+			}
+			//recording2 = false
 			recordingStopStep2 = step;
 		}
 		ghost = instance_create_layer(p2Rec_xstart, p2Rec_ystart, "players", oGhost);

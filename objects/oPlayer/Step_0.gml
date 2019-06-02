@@ -41,6 +41,14 @@ if playerNum == 2 {
 	}
 }
 
+//SFX
+
+if oSoul.playAudio {
+	if keyJump {
+		audio_play_sound(sfxBasicBounce, 1, false);
+	}
+}
+
 /*
 // TODO Re-add ducking when the camera comes back
 if keyDown {
@@ -103,6 +111,19 @@ x += hsp;
 
 // RISING AND FALLING MOVEMENT
 
+// jumping on the floor
+if place_meeting(x, y + 0.1, oSolid){
+	jumpCharges = maxJumpCharges;
+	if keyJump {
+		vsp = - jumppow;
+	}
+}
+
+// Jumpming in the air
+if keyJump and jumpCharges {
+	vsp = - jumppow;
+	jumpCharges--;
+}
 
 // Gravity and Friction happen first
 if oGame.step % frictionRate == 0 {
@@ -146,23 +167,8 @@ if place_meeting(x, y + vsp, oSolid) { // We'll hit a solid
 			y += sign(vsp)/10;
 		}
 		//Then stop.
-		//effect_create_below(ef_rain, x, y, vsp*10, c_red);
 		vsp = 0;
 	}
-}
-
-// jumping on the floor
-if place_meeting(x, y + 0.1, oSolid){
-	jumpCharges = maxJumpCharges;
-	if keyJump {
-		vsp = - jumppow;
-	}
-}
-
-// Jumpming in the air
-if keyJump and jumpCharges {
-	vsp = - jumppow;
-	jumpCharges--;
 }
 
 y += vsp;
