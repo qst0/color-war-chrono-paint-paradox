@@ -6,6 +6,10 @@ if step == 0 {
 	p1Rec_ystart = p1.ystart;
 	p2Rec_xstart = p2.xstart;
 	p2Rec_ystart = p2.ystart;
+	p3Rec_xstart = p3.xstart;
+	p3Rec_ystart = p3.ystart;
+	p4Rec_xstart = p4.xstart;
+	p4Rec_ystart = p4.ystart;
 }
 
 if keyboard_check_pressed(vk_f12) {
@@ -19,6 +23,14 @@ if step % 4 == 0 {
 	}
 	if p2PaintPercent < 100 && p2.keyDown
 		&& !p2.keyLeft && !p2.keyRight {
+		p2PaintPercent++;
+	}
+	if p1PaintPercent < 100 && p3.keyDown
+		&& !p3.keyLeft && !p3.keyRight{
+		p1PaintPercent++;
+	}
+	if p2PaintPercent < 100 && p4.keyDown
+		&& !p4.keyLeft && !p4.keyRight {
 		p2PaintPercent++;
 	}
 }
@@ -89,16 +101,25 @@ if recording2 == true {
 	data_point = [p2.keyUp, p2.keyDown, p2.keyLeft, p2.keyRight, p2.keyJump]
 	p2Rec[step - recordingStartStep2] = data_point;
 }
+if recording3 == true {
+	data_point = [p3.keyUp, p3.keyDown, p3.keyLeft, p3.keyRight, p3.keyJump]
+	p3Rec[step - recordingStartStep3] = data_point;
+}
+if recording4 == true {
+	data_point = [p4.keyUp, p4.keyDown, p4.keyLeft, p4.keyRight, p4.keyJump]
+	p4Rec[step - recordingStartStep4] = data_point;
+}
 
 if stepsTillY2K != 0 {
 	stepsTillY2K--;
 } else if stepsTillY2K == 0 {
-	if keyboard_check_pressed(ord("F")) || gamepad_button_check_pressed(0,gp_shoulderl)
+	
+	if (gamepad_button_check_pressed(0,gp_shoulderl))
 	&& p1PaintPercent > 0 {
 		p1PaintPercent -= 10
 		if recording == true {
 			if oSoul.playAudio {
-				audio_sound_pitch(sfxTimeSummon, random_range(0.8,1.2))
+				audio_sound_pitch(sfxTimeSummon, random_range(0.2,0.6))
 				audio_play_sound(sfxTimeSummon, 1, false);
 			}
 			//recording = false
@@ -113,12 +134,12 @@ if stepsTillY2K != 0 {
 		}
 	}
 
-	if keyboard_check_pressed(vk_rshift)  || gamepad_button_check_pressed(1,gp_shoulderl)
+	if ( gamepad_button_check_pressed(1,gp_shoulderl))
 	&& p2PaintPercent > 0 {
 		p2PaintPercent -= 10
 		if recording2 == true {
 			if oSoul.playAudio {
-				audio_sound_pitch(sfxTimeSummon, random_range(0.8,1.2))
+				audio_sound_pitch(sfxTimeSummon, random_range(0.2,0.6))
 				audio_play_sound(sfxTimeSummon, 1, false);
 			}
 			//recording2 = false
@@ -130,6 +151,47 @@ if stepsTillY2K != 0 {
 			//playbackStep = oGame.recordingStartStep;
 			recording = oGame.p2Rec;
 			finalStep = oGame.recordingStopStep2 - oGame.recordingStartStep2;
+		}
+	}
+	
+	//p3 p4
+	if (keyboard_check_pressed(ord("F")))
+	&& p1PaintPercent > 0 {
+		p1PaintPercent -= 10
+		if recording3 == true {
+			if oSoul.playAudio {
+				audio_sound_pitch(sfxTimeSummon, random_range(0.2,0.6))
+				audio_play_sound(sfxTimeSummon, 1, false);
+			}
+			//recording = false
+			recordingStopStep3 = step;
+		}
+		ghost = instance_create_layer(p3Rec_xstart, p3Rec_ystart, "players", oGhost);
+		with ghost {
+			color = choose(c_blue);
+			//playbackStep = oGame.recordingStartStep;
+			recording = oGame.p3Rec;
+			finalStep = oGame.recordingStopStep3 - oGame.recordingStartStep3;
+		}
+	}
+
+	if (keyboard_check_pressed(vk_rshift))
+	&& p2PaintPercent > 0 {
+		p2PaintPercent -= 10
+		if recording4 == true {
+			if oSoul.playAudio {
+				audio_sound_pitch(sfxTimeSummon, random_range(0.2,0.6))
+				audio_play_sound(sfxTimeSummon, 1, false);
+			}
+			//recording2 = false
+			recordingStopStep4 = step;
+		}
+		ghost = instance_create_layer(p4Rec_xstart, p4Rec_ystart, "players", oGhost);
+		with ghost {
+			color = choose(c_red);
+			//playbackStep = oGame.recordingStartStep;
+			recording = oGame.p4Rec;
+			finalStep = oGame.recordingStopStep4 - oGame.recordingStartStep4;
 		}
 	}
 }

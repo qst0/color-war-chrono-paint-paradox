@@ -8,15 +8,14 @@
 	keyDown = keyboard_check(vk_down) or keyboard_check(ord("S"));
 	keyJump = keyboard_check_pressed(vk_space);
 */
-
-if playerNum == 2 {
-	color = c_red;
+ if playerNum == 1 {
+	color = c_blue;
 	if !dying {
-		keyLeft = keyboard_check(vk_left) || gamepad_axis_value(1,0) < -.5//or keyboard_check(ord("A"));
-		keyRight = keyboard_check(vk_right) || gamepad_axis_value(1,0) > .5//or keyboard_check(ord("D"));
-		keyUp = keyboard_check(vk_up) || gamepad_axis_value(1,1) > .5//or keyboard_check(ord("W"));;
-		keyDown = keyboard_check(vk_down) || gamepad_axis_value(1,1) < -.5//or keyboard_check(ord("S"));
-		keyJump = keyboard_check_pressed(vk_rcontrol) || gamepad_button_check_pressed(1,gp_face1)
+		keyLeft = /*keyboard_check(ord("A")) || */gamepad_axis_value(0,0) < -.5
+		keyRight = /*keyboard_check(ord("D")) || */gamepad_axis_value(0,0) > .5
+		keyUp = /*keyboard_check(ord("W")) || */gamepad_axis_value(0,1) > .5
+		keyDown = /*keyboard_check(ord("S")) || */gamepad_axis_value(0,1) < -.5
+		keyJump = /*keyboard_check_pressed(vk_space) || */gamepad_button_check_pressed(0,gp_face1);
 	} else {
 		keyLeft = false;
 		keyRight = false;
@@ -24,14 +23,44 @@ if playerNum == 2 {
 		keyDown = false;
 		keyJump = false;
 	}
-} else if playerNum == 1 {
+} else if playerNum == 2 {
+	color = c_red;
+	if !dying {
+		keyLeft = /*keyboard_check(vk_left) || */gamepad_axis_value(1,0) < -.5//or keyboard_check(ord("A"));
+		keyRight = /*keyboard_check(vk_right) || */gamepad_axis_value(1,0) > .5//or keyboard_check(ord("D"));
+		keyUp = /*keyboard_check(vk_up) ||*/ gamepad_axis_value(1,1) > .5//or keyboard_check(ord("W"));;
+		keyDown = /*keyboard_check(vk_down) ||*/ gamepad_axis_value(1,1) < -.5//or keyboard_check(ord("S"));
+		keyJump = /*keyboard_check_pressed(vk_rcontrol) ||*/ gamepad_button_check_pressed(1,gp_face1)
+	} else {
+		keyLeft = false;
+		keyRight = false;
+		keyUp = false;
+		keyDown = false;
+		keyJump = false;
+	}
+} else if playerNum == 3 {
 	color = c_blue;
 	if !dying {
-		keyLeft = keyboard_check(ord("A")) || gamepad_axis_value(0,0) < -.5
-		keyRight = keyboard_check(ord("D")) || gamepad_axis_value(0,0) > .5
-		keyUp = keyboard_check(ord("W")) || gamepad_axis_value(0,1) > .5
-		keyDown = keyboard_check(ord("S")) || gamepad_axis_value(0,1) < -.5
-		keyJump = keyboard_check_pressed(vk_space) || gamepad_button_check_pressed(0,gp_face1);
+		keyLeft = keyboard_check(ord("A"));
+		keyRight = keyboard_check(ord("D"));
+		keyUp = keyboard_check(ord("W"));
+		keyDown = keyboard_check(ord("S"));
+		keyJump = keyboard_check_pressed(vk_space);
+	} else {
+		keyLeft = false;
+		keyRight = false;
+		keyUp = false;
+		keyDown = false;
+		keyJump = false;
+	}
+} else if playerNum == 4 {
+	color = c_red;
+	if !dying {
+		keyLeft = keyboard_check(vk_left);
+		keyRight = keyboard_check(vk_right);
+		keyUp = keyboard_check(vk_up);
+		keyDown = keyboard_check(vk_down);
+		keyJump = keyboard_check_pressed(vk_rcontrol);
 	} else {
 		keyLeft = false;
 		keyRight = false;

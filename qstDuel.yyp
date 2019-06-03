@@ -119,6 +119,14 @@
             }
         },
         {
+            "Key": "3b2b1cce-03a9-4ce7-a74c-f10b80414738",
+            "Value": {
+                "id": "6d7ff5e9-e9d4-4829-9873-ec51c14f564e",
+                "resourcePath": "rooms\\rmFall\\rmFall.yy",
+                "resourceType": "GMRoom"
+            }
+        },
+        {
             "Key": "407a9b22-18b8-4d7c-9131-b2b50d39b78a",
             "Value": {
                 "id": "59e16861-c27a-48ff-ab4a-021ecf1a5189",
@@ -255,6 +263,14 @@
             }
         },
         {
+            "Key": "77d21b8a-e8df-418a-9002-a9b25ff6b955",
+            "Value": {
+                "id": "6370985f-45d7-4e4b-9038-427a9729fe7b",
+                "resourcePath": "rooms\\rmPlatformMaze\\rmPlatformMaze.yy",
+                "resourceType": "GMRoom"
+            }
+        },
+        {
             "Key": "7c707d10-bd25-4c79-a7b3-b958787cdfcd",
             "Value": {
                 "id": "96854045-5955-4820-ab91-dc6328166e23",
@@ -284,6 +300,14 @@
                 "id": "4505be8b-88e1-4713-99c0-00d96950591a",
                 "resourcePath": "options\\ios\\options_ios.yy",
                 "resourceType": "GMiOSOptions"
+            }
+        },
+        {
+            "Key": "8ef7dc38-a866-46b4-91aa-5c17e94299c1",
+            "Value": {
+                "id": "b99ddd2d-d770-49f1-a287-5166290303b4",
+                "resourcePath": "rooms\\rmBig\\rmBig.yy",
+                "resourceType": "GMRoom"
             }
         },
         {
