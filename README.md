@@ -1,5 +1,4 @@
-# color-war-chrono-paint-paradox
-
+# Color War Chrono : Paint Paradox
 **A game made in 48 hours for Alakajam #6**
 
 ### [🔵⬇🕹 Download / Give Feedback 🕹⬇🔴](https://qst0.itch.io/color-war-chrono-paint-paradox)
